@@ -4,9 +4,7 @@ import org.example.javawebapp_vadzim.model.Game;
 import org.example.javawebapp_vadzim.service.GameService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/games")
@@ -34,10 +32,8 @@ public class GameController {
     }
 
     @PutMapping("/{id}")
-    public Game updateGame(
-            @PathVariable Long id,
-            @RequestBody Game game) {
-
+    public Game updateGame(@PathVariable Long id,
+                           @RequestBody Game game) {
         return gameService.updateGame(id, game);
     }
 

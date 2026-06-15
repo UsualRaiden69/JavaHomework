@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.6</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-    <groupId>org.example</groupId>
-    <artifactId>JavaWebApp_Vadzim</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>JavaWebApp_Vadzim</name>
-    <description>JavaWebApp_Vadzim</description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
-    <properties>
-        <java.version>17</java.version>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webmvc</artifactId>
-        </dependency>
+<а:project xmlns:а="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <а:modelVersion>4.0.0</а:modelVersion>
+    <а:parent>
+        <а:groupId>org.springframework.boot</а:groupId>
+        <а:artifactId>spring-boot-starter-parent</а:artifactId>
+        <а:version>4.0.6</а:version>
+        <а:relativePath/> <!-- lookup parent from repository -->
+    </а:parent>
+    <а:groupId>org.example</а:groupId>
+    <а:artifactId>JavaWebApp_Vadzim</а:artifactId>
+    <а:version>0.0.1-SNAPSHOT</а:version>
+    <а:name>JavaWebApp_Vadzim</а:name>
+    <а:description>JavaWebApp_Vadzim</а:description>
+    <а:url/>
+    <а:licenses>
+        <а:license/>
+    </а:licenses>
+    <а:developers>
+        <а:developer/>
+    </а:developers>
+    <а:scm>
+        <а:connection/>
+        <а:developerConnection/>
+        <а:tag/>
+        <а:url/>
+    </а:scm>
+    <а:properties>
+        <а:java.version>17</а:java.version>
+    </а:properties>
+    <а:dependencies>
+        <а:dependency>
+            <а:groupId>org.springframework.boot</а:groupId>
+            <а:artifactId>spring-boot-starter-webmvc</а:artifactId>
+        </а:dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webmvc-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+        <а:dependency>
+            <а:groupId>org.springframework.boot</а:groupId>
+            <а:artifactId>spring-boot-starter-webmvc-test</а:artifactId>
+            <а:scope>test</а:scope>
+        </а:dependency>
+    </а:dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <а:build>
+        <а:plugins>
+            <а:plugin>
+                <а:groupId>org.springframework.boot</а:groupId>
+                <а:artifactId>spring-boot-maven-plugin</а:artifactId>
+            </а:plugin>
+        </а:plugins>
+    </а:build>
 
-</project>
+</а:project>
