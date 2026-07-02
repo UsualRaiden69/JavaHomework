@@ -1,39 +1,41 @@
 package org.example.javawebapp_vadzim.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.util.*;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleNotFound(
-            ResourceNotFoundException ex) {
+    public ResponseEntity<Map<String, Object>> handleNotFound(ResourceNotFoundException ex) {
 
-        ErrorResponse error = new ErrorResponse(
-                ex.getMessage(),
-                HttpStatus.NOT_FOUND.value(),
-                LocalDateTime.now()
-        );
+        Map<String, Object> error = new HashMap<>();
+        error.put("message", ex.getMessage());
+        error.put("status", 404);
 
-        return new ResponseEntity<>(error,
-                HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(404).body(error);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, Object>> handleValidation(MethodArgumentNotValidException ex) {
+
+        Map<String, Object> error = new HashMap<>();
+        error.put("message", "Validation error");
+        error.put("status", 400);
+
+        return ResponseEntity.badRequest().body(error);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleGeneral(
-            Exception ex) {
+    public ResponseEntity<Map<String, Object>> handleGeneric(Exception ex) {
 
-        ErrorResponse error = new ErrorResponse(
-                ex.getMessage(),
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                LocalDateTime.now()
-        );
+        Map<String, Object> error = new HashMap<>();
+        error.put("message", ex.getMessage());
+        error.put("status", 500);
 
-        return new ResponseEntity<>(error,
-                HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.status(500).body(error);
     }
 }

@@ -1,16 +1,13 @@
 package org.example.javawebapp_vadzim.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class CategoryDto {
 
     private Long id;
+
+    @NotBlank
     private String name;
-
-    public CategoryDto() {}
-
-    public CategoryDto(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public Long getId() {
         return id;
