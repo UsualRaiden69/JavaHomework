@@ -1,32 +1,42 @@
 package org.example.javawebapp_vadzim.dto;
 
+import jakarta.validation.constraints.*;
+
+import java.math.BigDecimal;
+
 public class GameDto {
 
     private Long id;
+
+    @NotBlank
+    private String steamId;
+
+    @NotBlank
     private String title;
-    private double price;
+
+    @NotNull
+    @Positive
+    private BigDecimal price;
+
+    @NotBlank
     private String currency;
+
+    @NotNull
     private Long categoryId;
-
-    public GameDto() {}
-
-    public GameDto(Long id, String title, double price, String currency, Long categoryId) {
-        this.id = id;
-        this.title = title;
-        this.price = price;
-        this.currency = currency;
-        this.categoryId = categoryId;
-    }
 
     public Long getId() {
         return id;
+    }
+
+    public String getSteamId() {
+        return steamId;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public double getPrice() {
+    public @NotNull @Positive BigDecimal getPrice() {
         return price;
     }
 
@@ -42,11 +52,15 @@ public class GameDto {
         this.id = id;
     }
 
+    public void setSteamId(String steamId) {
+        this.steamId = steamId;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

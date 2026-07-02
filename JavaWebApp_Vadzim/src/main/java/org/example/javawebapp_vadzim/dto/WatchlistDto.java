@@ -1,20 +1,17 @@
 package org.example.javawebapp_vadzim.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 import java.util.List;
 
 public class WatchlistDto {
 
     private Long id;
+
+    @NotBlank
     private String username;
+
     private List<Long> gameIds;
-
-    public WatchlistDto() {}
-
-    public WatchlistDto(Long id, String username, List<Long> gameIds) {
-        this.id = id;
-        this.username = username;
-        this.gameIds = gameIds;
-    }
 
     public Long getId() {
         return id;

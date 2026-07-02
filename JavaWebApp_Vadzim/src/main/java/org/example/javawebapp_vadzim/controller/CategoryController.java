@@ -1,10 +1,10 @@
 package org.example.javawebapp_vadzim.controller;
 
-import org.example.javawebapp_vadzim.model.Category;
+import org.example.javawebapp_vadzim.dto.CategoryDto;
+import org.example.javawebapp_vadzim.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import org.example.javawebapp_vadzim.service.CategoryService;
 
 @RestController
 @RequestMapping("/api/categories")
@@ -17,24 +17,24 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<Category> getAllCategories() {
+    public List<CategoryDto> getAllCategories() {
         return categoryService.getAllCategories();
     }
 
     @GetMapping("/{id}")
-    public Category getCategory(@PathVariable Long id) {
+    public CategoryDto getCategory(@PathVariable Long id) {
         return categoryService.getCategory(id);
     }
 
     @PostMapping
-    public Category createCategory(@RequestBody Category category) {
-        return categoryService.createCategory(category);
+    public CategoryDto createCategory(@RequestBody CategoryDto dto) {
+        return categoryService.createCategory(dto);
     }
 
     @PutMapping("/{id}")
-    public Category updateCategory(@PathVariable Long id,
-                                   @RequestBody Category category) {
-        return categoryService.updateCategory(id, category);
+    public CategoryDto updateCategory(@PathVariable Long id,
+                                      @RequestBody CategoryDto dto) {
+        return categoryService.updateCategory(id, dto);
     }
 
     @DeleteMapping("/{id}")

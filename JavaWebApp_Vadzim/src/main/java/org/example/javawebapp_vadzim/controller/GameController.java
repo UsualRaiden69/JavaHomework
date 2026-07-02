@@ -1,6 +1,6 @@
 package org.example.javawebapp_vadzim.controller;
 
-import org.example.javawebapp_vadzim.model.Game;
+import org.example.javawebapp_vadzim.dto.GameDto;
 import org.example.javawebapp_vadzim.service.GameService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,24 +17,24 @@ public class GameController {
     }
 
     @GetMapping
-    public List<Game> getAllGames() {
+    public List<GameDto> getAllGames() {
         return gameService.getAllGames();
     }
 
     @GetMapping("/{id}")
-    public Game getGame(@PathVariable Long id) {
+    public GameDto getGame(@PathVariable Long id) {
         return gameService.getGame(id);
     }
 
     @PostMapping
-    public Game createGame(@RequestBody Game game) {
-        return gameService.createGame(game);
+    public GameDto createGame(@RequestBody GameDto dto) {
+        return gameService.createGame(dto);
     }
 
     @PutMapping("/{id}")
-    public Game updateGame(@PathVariable Long id,
-                           @RequestBody Game game) {
-        return gameService.updateGame(id, game);
+    public GameDto updateGame(@PathVariable Long id,
+                              @RequestBody GameDto dto) {
+        return gameService.updateGame(id, dto);
     }
 
     @DeleteMapping("/{id}")

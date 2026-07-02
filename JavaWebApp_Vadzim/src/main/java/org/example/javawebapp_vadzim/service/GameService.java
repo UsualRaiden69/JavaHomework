@@ -1,6 +1,8 @@
 package org.example.javawebapp_vadzim.service;
 
+import org.example.javawebapp_vadzim.dto.GameDto;
 import org.example.javawebapp_vadzim.exception.ResourceNotFoundException;
+import org.example.javawebapp_vadzim.mapper.GameMapper;
 import org.example.javawebapp_vadzim.model.Game;
 import org.example.javawebapp_vadzim.repository.GameRepository;
 import org.slf4j.Logger;
@@ -8,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GameService {
@@ -21,47 +24,53 @@ public class GameService {
         this.repository = repository;
     }
 
-    public List<Game> getAllGames() {
+    public List<GameDto> getAllGames() {
         logger.info("Getting all games");
-        return repository.findAll();
+
+        return repository.findAll()
+                .stream()
+                .map(GameMapper::toDto)
+                .collect(Collectors.toList());
     }
 
-    public Game getGame(Long id) {
+    public GameDto getGame(Long id) {
 
-        logger.debug("Searching game with id {}", id);
+        Game game = repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Game not found: " + id));
 
-        Game game = repository.findById(id);
-
-        if (game == null) {
-            logger.warn("Game not found with id {}", id);
-            throw new ResourceNotFoundException("Game not found: " + id);
-        }
-
-        return game;
+        return GameMapper.toDto(game);
     }
 
-    public Game createGame(Game game) {
-        logger.info("Creating game: {}", game.getTitle());
-        return repository.save(game);
+    public GameDto createGame(GameDto dto) {
+
+        Game game = GameMapper.toEntity(dto);
+
+        return GameMapper.toDto(
+                repository.save(game)
+        );
     }
 
-    public Game updateGame(Long id, Game updated) {
+    public GameDto updateGame(Long id, GameDto dto) {
 
-        logger.info("Updating game with id {}", id);
+        Game game = repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Game not found: " + id));
 
-        Game game = getGame(id);
+        game.setSteamId(dto.getSteamId());
+        game.setTitle(dto.getTitle());
+        game.setPrice(dto.getPrice());
+        game.setCurrency(dto.getCurrency());
+        game.setCategoryId(dto.getCategoryId());
 
-        game.setSteamId(updated.getSteamId());
-        game.setTitle(updated.getTitle());
-        game.setPrice(updated.getPrice());
-        game.setCurrency(updated.getCurrency());
-        game.setCategoryId(updated.getCategoryId());
-
-        return game;
+        return GameMapper.toDto(
+                repository.save(game)
+        );
     }
 
     public void deleteGame(Long id) {
-        logger.info("Deleting game with id {}", id);
-        repository.delete(id);
+        repository.deleteById(id);
     }
 }

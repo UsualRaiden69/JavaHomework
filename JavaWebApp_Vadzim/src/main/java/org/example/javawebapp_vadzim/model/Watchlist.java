@@ -1,16 +1,29 @@
 package org.example.javawebapp_vadzim.model;
 
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "watchlists")
 public class Watchlist {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String username;
-    private List<Long> gameIds;
+
+    @ElementCollection
+    private List<Long> gameIds = new ArrayList<>();
 
     public Watchlist() {
-        this.gameIds = new ArrayList<>();
     }
 
     public Watchlist(Long id, String username) {
@@ -31,20 +44,20 @@ public class Watchlist {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public List<Long> getGameIds() {
         return gameIds;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setGameIds(List<Long> gameIds) {

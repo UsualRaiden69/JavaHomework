@@ -1,9 +1,8 @@
 package org.example.javawebapp_vadzim.controller;
 
-import org.example.javawebapp_vadzim.model.Watchlist;
-import org.springframework.web.bind.annotation.*;
-
+import org.example.javawebapp_vadzim.dto.WatchlistDto;
 import org.example.javawebapp_vadzim.service.WatchlistService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,24 +17,24 @@ public class WatchlistController {
     }
 
     @GetMapping
-    public List<Watchlist> getAllWatchlists() {
+    public List<WatchlistDto> getAllWatchlists() {
         return watchlistService.getAllWatchlists();
     }
 
     @GetMapping("/{id}")
-    public Watchlist getWatchlist(@PathVariable Long id) {
+    public WatchlistDto getWatchlist(@PathVariable Long id) {
         return watchlistService.getWatchlist(id);
     }
 
     @PostMapping
-    public Watchlist createWatchlist(@RequestBody Watchlist watchlist) {
-        return watchlistService.createWatchlist(watchlist);
+    public WatchlistDto createWatchlist(@RequestBody WatchlistDto dto) {
+        return watchlistService.createWatchlist(dto);
     }
 
     @PutMapping("/{id}")
-    public Watchlist updateWatchlist(@PathVariable Long id,
-                                     @RequestBody Watchlist watchlist) {
-        return watchlistService.updateWatchlist(id, watchlist);
+    public WatchlistDto updateWatchlist(@PathVariable Long id,
+                                        @RequestBody WatchlistDto dto) {
+        return watchlistService.updateWatchlist(id, dto);
     }
 
     @DeleteMapping("/{id}")
@@ -44,8 +43,8 @@ public class WatchlistController {
     }
 
     @PostMapping("/{watchlistId}/games/{gameId}")
-    public Watchlist addGame(@PathVariable Long watchlistId,
-                             @PathVariable Long gameId) {
+    public WatchlistDto addGame(@PathVariable Long watchlistId,
+                                @PathVariable Long gameId) {
         return watchlistService.addGame(watchlistId, gameId);
     }
 }
